@@ -47,6 +47,15 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Industrial Design System
+        "steel-blue": "hsl(var(--steel-blue))",
+        "steel-blue-light": "hsl(var(--steel-blue-light))",
+        "steel-gray": "hsl(var(--steel-gray))",
+        "steel-gray-light": "hsl(var(--steel-gray-light))",
+        "industrial-orange": "hsl(var(--industrial-orange))",
+        "industrial-orange-light": "hsl(var(--industrial-orange-light))",
+        "metallic": "hsl(var(--metallic))",
+        "charcoal": "hsl(var(--charcoal))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -57,6 +66,20 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      backgroundImage: {
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-accent": "var(--gradient-accent)",
+        "gradient-metallic": "var(--gradient-metallic)",
+      },
+      boxShadow: {
+        "industrial": "var(--shadow-industrial)",
+        "accent": "var(--shadow-accent)",
+        "card": "var(--shadow-card)",
+      },
+      fontFamily: {
+        sans: ["Inter", "system-ui", "sans-serif"],
+        heading: ["Poppins", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
