@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Phone, Mail, MapPin, Clock, MessageSquare, FileText, Webhook, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageSquare, FileText, Send } from "lucide-react";
 import { z } from "zod";
 
 const contactMethods = [
@@ -32,6 +32,9 @@ const contactMethods = [
   }
 ];
 
+// N8N webhook URL - hardcoded for the company
+const N8N_WEBHOOK_URL = "https://n8n.prismera.com.au/webhook/19a98e2d-8758-4465-a8c3-3f5842390e68";
+
 // Form validation schema
 const contactFormSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(50, "First name must be less than 50 characters"),
@@ -42,7 +45,6 @@ const contactFormSchema = z.object({
   vehicle: z.string().trim().max(100, "Vehicle type must be less than 100 characters").optional(),
   requirements: z.string().trim().min(1, "Project requirements are required").max(2000, "Requirements must be less than 2000 characters"),
   timeline: z.string().trim().max(100, "Timeline must be less than 100 characters").optional(),
-  n8nWebhookUrl: z.string().url("Invalid webhook URL").optional().or(z.literal("")),
 });
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -59,7 +61,6 @@ const Contact = () => {
     vehicle: "",
     requirements: "",
     timeline: "",
-    n8nWebhookUrl: "",
   });
   const [formErrors, setFormErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
 
@@ -80,44 +81,36 @@ const Contact = () => {
       // Validate form data
       const validatedData = contactFormSchema.parse(formData);
       
-      // If N8N webhook URL is provided, send to N8N
-      if (validatedData.n8nWebhookUrl && validatedData.n8nWebhookUrl.trim()) {
-        console.log("Sending form data to N8N webhook:", validatedData.n8nWebhookUrl);
-        
-        const webhookPayload = {
-          firstName: validatedData.firstName,
-          lastName: validatedData.lastName,
-          email: validatedData.email,
-          phone: validatedData.phone,
-          location: validatedData.location || "",
-          vehicle: validatedData.vehicle || "",
-          requirements: validatedData.requirements,
-          timeline: validatedData.timeline || "",
-          timestamp: new Date().toISOString(),
-          source: "Custom Truck Beds Website",
-          formType: "Contact Quote Request"
-        };
+      // Send form data to N8N webhook
+      console.log("Sending form data to N8N webhook:", N8N_WEBHOOK_URL);
+      
+      const webhookPayload = {
+        firstName: validatedData.firstName,
+        lastName: validatedData.lastName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        location: validatedData.location || "",
+        vehicle: validatedData.vehicle || "",
+        requirements: validatedData.requirements,
+        timeline: validatedData.timeline || "",
+        timestamp: new Date().toISOString(),
+        source: "Custom Truck Beds Website",
+        formType: "Contact Quote Request"
+      };
 
-        const response = await fetch(validatedData.n8nWebhookUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          mode: "no-cors",
-          body: JSON.stringify(webhookPayload),
-        });
+      const response = await fetch(N8N_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify(webhookPayload),
+      });
 
-        toast({
-          title: "Quote Request Sent!",
-          description: "Your request has been sent to our N8N workflow. We'll process it and get back to you within 24 hours.",
-        });
-      } else {
-        // Fallback: show success message without webhook
-        toast({
-          title: "Quote Request Received!",
-          description: "Thank you for your interest! We'll get back to you within 24 hours with a custom quote.",
-        });
-      }
+      toast({
+        title: "Quote Request Sent!",
+        description: "Your request has been processed and sent to our team. We'll get back to you within 24 hours.",
+      });
 
       // Reset form after successful submission
       setFormData({
@@ -129,7 +122,6 @@ const Contact = () => {
         vehicle: "",
         requirements: "",
         timeline: "",
-        n8nWebhookUrl: validatedData.n8nWebhookUrl || "", // Keep webhook URL for convenience
       });
 
     } catch (error) {
@@ -249,35 +241,10 @@ const Contact = () => {
                 </CardTitle>
                 <CardDescription>
                   Fill out the form below and we'll get back to you with a custom quote within 24 hours.
-                  Optionally add your N8N webhook URL to automate form processing.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* N8N Webhook Configuration */}
-                  <div className="bg-muted/50 p-4 rounded-lg border border-dashed border-steel-gray">
-                    <div className="flex items-center mb-2">
-                      <Webhook className="h-4 w-4 text-industrial-orange mr-2" />
-                      <Label htmlFor="n8nWebhookUrl" className="text-sm font-medium text-steel-blue">
-                        N8N Webhook URL (Optional)
-                      </Label>
-                    </div>
-                    <Input
-                      id="n8nWebhookUrl"
-                      type="url"
-                      placeholder="https://your-n8n-instance.com/webhook/your-webhook-id"
-                      value={formData.n8nWebhookUrl}
-                      onChange={(e) => handleInputChange("n8nWebhookUrl", e.target.value)}
-                      className={formErrors.n8nWebhookUrl ? "border-destructive" : ""}
-                    />
-                    {formErrors.n8nWebhookUrl && (
-                      <p className="text-destructive text-xs mt-1">{formErrors.n8nWebhookUrl}</p>
-                    )}
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Add your N8N webhook URL to automatically process form submissions in your workflow
-                    </p>
-                  </div>
-
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="firstName">First Name *</Label>
@@ -412,7 +379,7 @@ const Contact = () => {
                       ) : (
                         <>
                           <Send className="mr-2 h-4 w-4" />
-                          Send to N8N
+                          Send Quote Request
                         </>
                       )}
                     </Button>
@@ -424,7 +391,6 @@ const Contact = () => {
 
                   <p className="text-xs text-muted-foreground text-center">
                     * Required fields. We respect your privacy and never share your information.
-                    Form data is securely sent to your N8N workflow for processing.
                   </p>
                 </form>
               </CardContent>
