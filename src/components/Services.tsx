@@ -32,18 +32,18 @@ const services = [
 const features = [
   {
     icon: Award,
-    title: "Australian Made",
-    description: "Proudly manufactured in Australia using local materials and craftsmanship"
+    title: "Lowest Price Guaranteed",
+    description: "We'll beat any genuine quote or give you $200. No gimmicks, just honest pricing for tradies"
   },
   {
     icon: Clock,
-    title: "Fast Turnaround",
-    description: "Quick delivery times without compromising on quality or precision"
+    title: "Built by Tradies",
+    description: "Aussie craftsmen who understand what you need on the job. Quality work at fair prices"
   },
   {
     icon: Shield,
-    title: "Built to Last",
-    description: "Engineered for harsh Australian conditions with premium materials"
+    title: "Unbeatable Value",
+    description: "Premium quality without premium prices. Heavy-duty gear that won't empty your wallet"
   }
 ];
 
@@ -54,11 +54,11 @@ const Services = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-steel-blue mb-6">
-            Professional Solutions
+            Best Value for Tradies
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            From custom fabrication to professional installation, we deliver complete utility vehicle solutions 
-            tailored to your specific requirements.
+            Quality truck beds at prices that won't break the bank. <span className="font-semibold text-industrial-orange">Lowest price guaranteed</span> - 
+            we'll beat any genuine quote or give you $200 cash.
           </p>
         </div>
 
@@ -95,8 +95,11 @@ const Services = () => {
         <div className="bg-gradient-metallic rounded-2xl p-8 md:p-12">
           <div className="text-center mb-12">
             <h3 className="font-heading text-3xl font-bold text-charcoal mb-4">
-              Why Choose Our Solutions?
+              Why Tradies Choose Us
             </h3>
+            <p className="text-steel-gray text-lg">
+              Fair prices, solid work, no BS
+            </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">

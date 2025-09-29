@@ -19,12 +19,12 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center">
         <h1 className="font-heading text-5xl md:text-7xl font-bold text-primary-foreground mb-6 leading-tight">
           Custom Truck Beds
-          <span className="block text-industrial-orange">Built for Australia</span>
+          <span className="block text-industrial-orange">Lowest Price Guaranteed</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Premium utility vehicle solutions crafted with precision steel fabrication. 
-          Engineered for durability, designed for performance.
+          Premium quality truck beds at unbeatable prices. Built by Australian tradies for Australian trades. 
+          We'll beat any genuine quote or your money back.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">

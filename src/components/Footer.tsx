@@ -13,8 +13,8 @@ const Footer = () => {
               Custom Truck Beds
             </h3>
             <p className="text-primary-foreground/80">
-              Australia's leading manufacturer of premium utility vehicle solutions. 
-              Quality craftsmanship, nationwide service.
+              Built by tradies for tradies. Quality truck beds at Australia's lowest guaranteed prices. 
+              We'll beat any quote or your money back.
             </p>
             <div className="flex space-x-4">
               <Button variant="ghost" size="sm" className="text-primary-foreground/60 hover:text-industrial-orange p-2">

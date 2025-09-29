@@ -46,11 +46,11 @@ const Gallery = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-steel-blue mb-6">
-            Our Work Gallery
+            Real Work, Real Value
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Explore our portfolio of custom truck bed solutions, showcasing the quality craftsmanship 
-            and attention to detail that sets us apart.
+            Check out truck beds we've built for tradies across Australia. Top quality at prices that actually make sense. 
+            <span className="font-semibold text-industrial-orange"> Every job backed by our lowest price guarantee.</span>
           </p>
         </div>
 

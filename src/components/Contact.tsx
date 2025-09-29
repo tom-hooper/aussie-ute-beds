@@ -32,11 +32,11 @@ const Contact = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-steel-blue mb-6">
-            Get Your Custom Quote
+            Get Your Free Quote Today
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to upgrade your utility vehicle? Contact our team of specialists for a free consultation 
-            and custom quote tailored to your specific needs.
+            <span className="font-bold text-industrial-orange">Lowest price guaranteed.</span> Got a quote from someone else? 
+            Send it through and we'll beat it or give you $200 cash. Fair dinkum promise from one tradie to another.
           </p>
         </div>
 
