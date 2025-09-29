@@ -124,6 +124,7 @@ const Contact = () => {
                   frameBorder="0"
                   className="w-full min-h-[800px] rounded-lg"
                   title="Custom Truck Bed Quote Request Form"
+                  key="n8n-form"
                 />
               </CardContent>
             </Card>
