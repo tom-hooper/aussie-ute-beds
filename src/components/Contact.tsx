@@ -7,7 +7,7 @@ const contactMethods = [
     title: "Call Us",
     description: "Speak directly with our specialists",
     contact: "1300 TRUCK BED",
-    subtext: "(1300 878 252)"
+    subtext: "(1300 123 123)"
   },
   {
     icon: Mail,
