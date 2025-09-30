@@ -1,7 +1,7 @@
 {
   "name": "vite_react_shadcn_ts",
   "private": true,
-  "homepage": "https://tom-hooper.github.io/aussie-ute-beds/main.tsx",
+  "homepage": "https://tom-hooper.github.io/aussie-ute-beds/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
