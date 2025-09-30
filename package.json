@@ -1,7 +1,6 @@
 {
   "name": "vite_react_shadcn_ts",
   "private": false,
-  "homepage": "https://tom-hooper.github.io/aussie-ute-beds/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
